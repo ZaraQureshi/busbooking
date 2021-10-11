@@ -13,8 +13,6 @@
             android:id="@+id/bookBus"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-
-
             android:text="Book a bus"
             android:textColor="@android:color/white"
             android:textSize="@dimen/text_size"/>

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.sql.Blob;
 import java.util.ArrayList;
@@ -38,7 +39,7 @@ public class DBHandler extends SQLiteOpenHelper {
     private static final String PASSWORD_COL = "password";
 
     // below variable is for image column.
-    private static final String IMAGE_COL = "image";
+    //private static final String IMAGE_COL = "image";
 
     private static final String SOURCE_COL = "bus_source";
     private static final String DEST_COL = "bus_destination";
@@ -69,13 +70,14 @@ public class DBHandler extends SQLiteOpenHelper {
                 + PASSWORD_COL + " TEXT)";
 
         String CREATE_BUS = "CREATE TABLE "
-                + TABLE_BUS + "(" + ID_BUS + " INTEGER PRIMARY KEY,"
+                + TABLE_BUS + "(" + ID_BUS + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + NAME_BUS+" TEXT,"
                 + SOURCE_COL + " TEXT,"
                 + DEST_COL + " TEXT,"
                 + AMT_COL + " TEXT,"
-                + DATE_COL + " TEXT,"
-                + IMAGE_COL + " BLOB)";
+                + DATE_COL + " BLOB)";
+                //+ IMAGE_COL
+
         // at last we are calling a exec sql
         // method to execute above sql query
         db.execSQL(query);
@@ -83,25 +85,32 @@ public class DBHandler extends SQLiteOpenHelper {
     }
 
     // this method is use to add new course to our sqlite database.
-    public void addNewUser(String userName, String userEmail, String userContact, String userPassword, byte[] userImage) {
+    public void addNewUser(String userName, String userEmail, String userContact, String userPassword) {
 
         // on below line we are creating a variable for
         // our sqlite database and calling writable method
         // as we are writing data in our database.
+        Log.d("DBHandler ","in side addnewuser");
         SQLiteDatabase db = this.getWritableDatabase();
 
         // on below line we are creating a
         // variable for content values.
         ContentValues values = new ContentValues();
+        Log.d("DBHandler ","connected with database");
 
         // on below line we are passing all values
         // along with its key and value pair.
-        values.put(NAME_COL, userName);
-        values.put(EMAIL_COL, userEmail);
-        values.put(CONTACT_COL, userContact);
-        values.put(PASSWORD_COL, userPassword);
-        values.put(IMAGE_COL, userImage);
-
+        try {
+            values.put(NAME_COL, userName);
+            values.put(EMAIL_COL, userEmail);
+            values.put(CONTACT_COL, userContact);
+            values.put(PASSWORD_COL, userPassword);
+            //values.put(IMAGE_COL, userImage);
+        }
+        catch(Exception e)
+        {
+            Log.d("DBHandler ", String.valueOf(e));
+        }
         // after adding all values we are passing
         // content values to our table.
         db.insert(TABLE_USER, null, values);
@@ -109,13 +118,17 @@ public class DBHandler extends SQLiteOpenHelper {
         // at last we are closing our
         // database after adding database.
         db.close();
+        Log.d("DBHandler ","end of add new bus");
+
     }
 
-    public void addNewBus(String busName, String busSource, String busDest, String busAmt, String busDate, byte[] busImage) {
+    public void addNewBus(String busName, String busSource, String busDest, String busAmt, String busDate) {
 
         // on below line we are creating a variable for
         // our sqlite database and calling writable method
         // as we are writing data in our database.
+        Log.d("DBHandler ","in side addNewBus");
+
         SQLiteDatabase db = this.getWritableDatabase();
 
         // on below line we are creating a
@@ -129,7 +142,7 @@ public class DBHandler extends SQLiteOpenHelper {
         values.put(DEST_COL, busDest);
         values.put(AMT_COL, busAmt);
         values.put(DATE_COL, busDate);
-        values.put(IMAGE_COL, busImage);
+        //values.put(IMAGE_COL, busImage);
 
         // after adding all values we are passing
         // content values to our table.
@@ -138,6 +151,8 @@ public class DBHandler extends SQLiteOpenHelper {
         // at last we are closing our
         // database after adding database.
         db.close();
+
+        Log.d("DBHandler :  "," Bus data inserted!!");
     }
 
     public ArrayList<Bus> readBus() {
@@ -159,14 +174,15 @@ public class DBHandler extends SQLiteOpenHelper {
                         cursorBus.getString(1),
                         cursorBus.getString(2),
                         cursorBus.getString(3),
-                        cursorBus.getString(4),
-                        cursorBus.getDouble(5),
-                        cursorBus.getBlob(5)
+                        cursorBus.getDouble(4),
+                        cursorBus.getString(5)
                 ));
             } while (cursorBus.moveToNext());
         }
         //closing the cursor
         cursorBus.close();
+
+        Log.d("DBHandler :  ","Bus data read successfully!!");
         return busList;
 //        //creating the adapter object
 //        adapter = new BusAdapter(this, R.layout.list_layout_bus, busList,mDatabase);

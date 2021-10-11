@@ -174,7 +174,7 @@ public class DBHandler extends SQLiteOpenHelper {
                         cursorBus.getString(1),
                         cursorBus.getString(2),
                         cursorBus.getString(3),
-                        cursorBus.getDouble(4),
+                        cursorBus.getInt(4),
                         cursorBus.getString(5)
                 ));
             } while (cursorBus.moveToNext());

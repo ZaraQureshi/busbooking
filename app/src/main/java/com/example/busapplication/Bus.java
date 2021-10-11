@@ -1,21 +1,24 @@
 package com.example.busapplication;
 
-import android.widget.TextView;
+import java.sql.Blob;
 
 public class Bus {
     int id;
-    String bus_name, source, destination,date;
+    String bus_name;
+    String source;
+    String destination;
+    String date;
     double amount;
-    byte[] image;
+    //byte[] image;
 
-    public Bus(int id, String bus_name, String source, String destination, String date,double amount,byte[] image) {
+    public Bus(int id, String bus_name, String source, String destination, double amount, String date) {
         this.id = id;
         this.bus_name = bus_name;
         this.source = source;
         this.destination = destination;
-        this.date = date;
         this.amount = amount;
-        this.image=image;
+        this.date = date;
+        //this.image=image;
     }
 
     public int getId() {
@@ -60,10 +63,11 @@ public class Bus {
         this.amount=amount;
     }
 
-    public byte[] getImage() {
+   /* public byte[] getImage() {
         return image;
     }
     public void setImage(byte[] image) {
         this.image=image;
     }
+    */
 }

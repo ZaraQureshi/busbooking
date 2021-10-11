@@ -15,18 +15,22 @@ import android.widget.LinearLayout;
 public class MainActivity extends AppCompatActivity {
 
     Button book;
-
+    DBHandler db;
     LinearLayout home,profile,busList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        db = new DBHandler(MainActivity.this);
+
         book = (Button) findViewById(R.id.bookBus);
         book.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 // redirect to LoginActivity
-                Intent intent = new Intent(MainActivity.this, BookBus.class);
+                Intent intent = new Intent(MainActivity.this, BusAdd.class);
                 startActivity(intent);
             }
         });

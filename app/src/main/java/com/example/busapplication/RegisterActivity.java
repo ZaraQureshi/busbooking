@@ -25,7 +25,7 @@ public class RegisterActivity extends AppCompatActivity {
     TextView login;
     boolean isNameValid, isEmailValid, isPhoneValid, isPasswordValid;
     private DBHandler dbHandler;
-    Bitmap bmpImage;
+   // Bitmap bmpImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +38,8 @@ public class RegisterActivity extends AppCompatActivity {
         password = (EditText) findViewById(R.id.password);
         register = (Button) findViewById(R.id.register);
         login = (TextView) findViewById(R.id.login);
-        image=(ImageView) findViewById(R.id.userImage);
-        bmpImage=null;
+        //image=(ImageView) findViewById(R.id.userImage);
+        //bmpImage=null;
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,7 +64,7 @@ public class RegisterActivity extends AppCompatActivity {
                 String userEmail=email.getText().toString();
                 String userContact=phone.getText().toString();
                 String userPassword=password.getText().toString();
-                byte[] userImage=DataConverter.convertImage2ByteArray(bmpImage);
+                //byte[] userImage=DataConverter.convertImage2ByteArray(bmpImage);
 
                 if(userName.isEmpty() && userEmail.isEmpty() && userContact.isEmpty() && userPassword.isEmpty()){
                     Toast.makeText(RegisterActivity.this, "Please enter all the data..", Toast.LENGTH_SHORT).show();
@@ -73,7 +73,7 @@ public class RegisterActivity extends AppCompatActivity {
                 }
                 // on below line we are calling a method to add new
                 // course to sqlite data and pass all our values to it.
-                dbHandler.addNewUser(userName, userEmail, userContact, userPassword,userImage);
+                dbHandler.addNewUser(userName, userEmail, userContact, userPassword);
 
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
@@ -95,7 +95,7 @@ public class RegisterActivity extends AppCompatActivity {
         switch(requestCode){
             case CAMERA_INTENT:
 //                if (requestCode== Activity.RESULT_OK){
-                    bmpImage=(Bitmap) data.getExtras().get("data");
+                   /* bmpImage=(Bitmap) data.getExtras().get("data");
                     if(bmpImage!=null){
                         image.setImageBitmap(bmpImage);
                     }else{
@@ -109,6 +109,8 @@ public class RegisterActivity extends AppCompatActivity {
 //                    ).show();
 //                }
                 break;
+
+                    */
         }
     }
 

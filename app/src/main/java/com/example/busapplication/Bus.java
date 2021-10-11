@@ -8,10 +8,10 @@ public class Bus {
     String source;
     String destination;
     String date;
-    double amount;
+    int amount;
     //byte[] image;
 
-    public Bus(int id, String bus_name, String source, String destination, double amount, String date) {
+    public Bus(int id, String bus_name, String source, String destination, int amount, String date) {
         this.id = id;
         this.bus_name = bus_name;
         this.source = source;
@@ -56,10 +56,10 @@ public class Bus {
         this.date=date;
     }
 
-    public double getAmount() {
+    public int getAmount() {
         return amount;
     }
-    public void setAmount(double amount) {
+    public void setAmount(int amount) {
         this.amount=amount;
     }
 

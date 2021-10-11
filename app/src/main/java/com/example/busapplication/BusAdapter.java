@@ -44,7 +44,7 @@ public class BusAdapter extends RecyclerView.Adapter<BusAdapter.ViewHolder>{
         holder.busName.setText(modal.getName());
         holder.busSource.setText(modal.getSource());
         holder.busDest.setText(modal.getDestination());
-      //  holder.busAmt.setText((int) modal.getAmount());
+        holder.busAmt.setText(modal.getAmount());
         holder.busDate.setText(modal.getDate());
 //      holder.busImage.setText("image", modal.getImage());
         Log.d("BusAdapter ","fine till onBindViewHolder");

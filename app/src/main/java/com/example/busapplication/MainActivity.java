@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // redirect to LoginActivity
-                Intent intent = new Intent(MainActivity.this, BusAdd.class);
+                Intent intent = new Intent(MainActivity.this, BookBus.class);
                 startActivity(intent);
             }
         });

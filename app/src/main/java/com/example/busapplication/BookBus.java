@@ -28,12 +28,23 @@ public class BookBus extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.bus_listview);
 
-        bookBtn=findViewById(R.id.bookBusTicket);
-        bookBtn.setOnClickListener(v -> {
+        try {
+            bookBtn = (Button) findViewById(R.id.bookBusTicket);
+            bookBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.d("bookBus", "in bookbutton");
+                    Intent intent = new Intent(getApplicationContext(), BusDetails.class);
+                    startActivity(intent);
+                }
+            });
             // redirect to LoginActivity
-            Intent intent = new Intent(getApplicationContext(), BusDetails.class);
-            startActivity(intent);
-        });
+
+        }
+        catch(Exception e)
+        {
+            Log.d("BookBus", String.valueOf(e));
+        }
         //ListView listViewBus;
        // RecyclerView busRV = null;
         //    BusAdapter adapter;

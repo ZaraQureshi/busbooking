@@ -14,6 +14,7 @@ public class BusDetails extends AppCompatActivity {
     Button book;
     DBHandler dbHandler;
 
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.bus_details);
